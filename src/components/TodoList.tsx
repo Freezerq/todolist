@@ -3,7 +3,7 @@ import {filterType} from "../App";
 import "../App.css";
 import AddItemForm from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-
+// 3
 type TasksType = {
     id: string
     title: string
@@ -21,6 +21,7 @@ type TodoListPropsType = {
     todolistId: string
     removeTodoList: (todoListId: string) => void
     taskTextChanged: (id: string, text: string, todoListId: string) => void
+    changeTodoListTitle: (todoListId: string, newTitle: string) => void
 }
 
 const TodoList = (props: TodoListPropsType) => {
@@ -29,7 +30,6 @@ const TodoList = (props: TodoListPropsType) => {
     let tasksArray = props.tasks.map(task => {
 
             const onClickRemove = () => props.deleteTask(task.id, props.todolistId)
-
 
             const onClickChecked = (e: ChangeEvent<HTMLInputElement>) => {
                 props.changeIsDone(task.id, e.currentTarget.checked, props.todolistId)
@@ -53,6 +53,12 @@ const TodoList = (props: TodoListPropsType) => {
         props.addTask(value, props.todolistId)
     }
 
+    const changeTodoListTitle = (newTitle: string) => {
+        props.changeTodoListTitle(props.todolistId, newTitle)
+    }
+
+
+
     const onClickButtonHandlerAll = () => props.setFilter('ShowAll', props.todolistId)
     const onClickButtonHandlerActive = () => props.setFilter('Active', props.todolistId);
     const onClickButtonHandlerCompleted = () => props.setFilter('Completed', props.todolistId)
@@ -66,7 +72,7 @@ const TodoList = (props: TodoListPropsType) => {
             <div>
                 <button onClick={removeTodoList}>x</button>
             </div>
-            <h3>{props.title}</h3>
+            <strong><EditableSpan title={props.title} changeTask={changeTodoListTitle}/></strong>
             <div>
                 <AddItemForm addItem={addTask}/>
             </div>

@@ -3,6 +3,7 @@ import './App.css';
 import TodoList from "./components/TodoList";
 import {v1} from "uuid";
 import AddItemForm from "./components/AddItemForm";
+import todoList from "./components/TodoList";
 
 
 export type TodolistType = {
@@ -87,6 +88,15 @@ function App() {
         delete tasks[todolistId]
     }
 
+    function changeTodoListTitle(todoListId: string, newTitle: string) {
+        let findTodoList = todolists.find(tl => tl.id === todoListId)
+        if (findTodoList) {
+            findTodoList.title = newTitle
+            setTodolists([...todolists])
+        }
+
+    }
+
     // function addTodoList(tl: TodolistType) {
     //     setTodolists([...todolists, tl])
     //     let copyTasks = {...tasks}
@@ -147,6 +157,7 @@ function App() {
                                      changeIsDone={changeIsDone}
                                      removeTodoList={removeTodoList}
                                      taskTextChanged={taskTextChanged}
+                                     changeTodoListTitle={changeTodoListTitle}
                     />
                 })}
             <div><AddItemForm addItem={addTodoList}/></div>

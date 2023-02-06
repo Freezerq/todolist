@@ -1,11 +1,12 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useCallback, useState} from "react";
 
 export type EditableSpanPropsType = {
     title: string
     changeTask: (text: string) => void
 }
 
-export function EditableSpan(props: EditableSpanPropsType) {
+export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
+    // console.log("SPAN CALLED", props.title)
     const [inputField, setInputField] = useState('')
     const [editMode, setEditMode] = useState(false)
 
@@ -28,4 +29,4 @@ export function EditableSpan(props: EditableSpanPropsType) {
         return <span onDoubleClick={doubleClickHandler}>{props.title}</span>
     }
 
-}
+})

@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
-
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 export type AddItemFormPropsType = {
     addItem: (text: string) => void
 }
 
 
-const AddItemForm = (props: AddItemFormPropsType) => {
+const AddItemForm = React.memo((props: AddItemFormPropsType) => {
     let [localInput, setLocalInput] = useState('')
     const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         if (event) {
@@ -22,31 +23,43 @@ const AddItemForm = (props: AddItemFormPropsType) => {
         if (!localInput.trim().length) {
             setError('Field is required')
         } else {
-            if (props.addItem) {
-                props.addItem(localInput.trim())
-                setLocalInput('')
-            }
-
-            // if (props.addTodoList) {
-            //     props.addTodoList({id: v1(), title: localInput, filter: "ShowAll"})
-            // }
+            props.addItem(localInput.trim())
+            setLocalInput('')
         }
     }
 
 
     return (
         <div>
-            <input
-                value={localInput}
-                onChange={onChangeInputHandler}
-                className={error ? 'error' : ''}
+            <TextField id="outlined-basic"
+                       label={error ? "Title is required" : error}
+                       variant="outlined"
+                       value={localInput}
+                       onChange={onChangeInputHandler}
+                       error={!!error}
             />
-            <button onClick={onClickButtonHandler}
-            >+
-            </button>
-            {error && <div className='errorMessage'>{error}</div>}
-        </div>
-    );
-};
-
+            <Button
+                onClick={onClickButtonHandler}
+                variant="contained"
+                style={{maxWidth: '30px', maxHeight: '30px',
+                    minWidth: '30px', minHeight: '30px',
+                    marginTop: '15px'}}
+            >+</Button>
+        </div>)
+})
 export default AddItemForm;
+
+{/*<Input*/
+}
+{/*    className={error ? 'error' : ''}*/
+}
+{/*/>*/
+}
+{/*<button onClick={onClickButtonHandler}*/
+}
+{/*>+*/
+}
+{/*</button>*/
+}
+{/*{error && <div className='errorMessage'>{error}</div>}*/
+}

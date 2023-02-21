@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export type AddItemFormPropsType = {
     addItem: (text: string) => void
+    disabled?: boolean
 }
 
 
@@ -31,7 +32,8 @@ const AddItemForm = React.memo((props: AddItemFormPropsType) => {
 
     return (
         <div>
-            <TextField id="outlined-basic"
+            <TextField disabled={props.disabled}
+                       id="outlined-basic"
                        label={error ? "Title is required" : error}
                        variant="outlined"
                        value={localInput}
@@ -39,11 +41,14 @@ const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                        error={!!error}
             />
             <Button
+                disabled={props.disabled}
                 onClick={onClickButtonHandler}
                 variant="contained"
-                style={{maxWidth: '30px', maxHeight: '30px',
+                style={{
+                    maxWidth: '30px', maxHeight: '30px',
                     minWidth: '30px', minHeight: '30px',
-                    marginTop: '15px'}}
+                    marginTop: '15px'
+                }}
             >+</Button>
         </div>)
 })

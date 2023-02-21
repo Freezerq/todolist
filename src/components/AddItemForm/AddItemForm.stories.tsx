@@ -15,5 +15,5 @@ export default {
 const callBack = action('Button was pressed inside a form')
 
 export const AddItemFormBaseExample = (props: any) => {
-    return <AddItemForm addItem={(text) => {callBack(text)}} />
+    return <AddItemForm addItem={(text) => {callBack(text)}} disabled={false}/>
 }

@@ -136,7 +136,6 @@ export const TasksApiStoriesUpdate = () => {
     const task: UpdateTaskModel = {
         title: 'WP',
         description: '',
-        completed: false,
         status: 0,
         priority: 0,
         startDate: '',

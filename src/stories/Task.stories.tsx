@@ -3,7 +3,6 @@ import AddItemForm from "../components/AddItemForm/AddItemForm";
 import {action} from "@storybook/addon-actions";
 import {Task} from "../components/TodolistsList/Todolist/Task/Task";
 import {TaskPriorities, TaskStatuses} from "../api/todolistsAPI";
-import {todolistId1} from "../components/TodolistsList/todolistsReducer";
 
 
 export default {
@@ -14,7 +13,7 @@ export default {
     //     backgroundColor: { control: 'color' },
     // },
 } //as ComponentMeta<typeof AddItemForm>;
-
+const todolistId1 = '1'
 const removeTaskCallBack = action('removeTaskCallBack was pressed')
 const changeIsDoneCallBack = action('removeTaskCallBack was pressed')
 const taskTextChangedCallBack = action('removeTaskCallBack was pressed')

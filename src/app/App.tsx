@@ -4,6 +4,7 @@ import ButtonAppBar from "../components/Button/ButtonAppBar";
 import {Container} from "@mui/material";
 
 import TodolistsList from "../components/TodolistsList/TodolistsList";
+import {CustomizedSnackbars} from "../components/ErrorSnackBar/ErrorSnackBar";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Container fixed>
                 <ButtonAppBar/>
                 <TodolistsList/>
+                <CustomizedSnackbars/>
             </Container>
         </div>
     );

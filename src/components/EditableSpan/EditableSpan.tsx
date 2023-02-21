@@ -3,6 +3,7 @@ import React, {ChangeEvent, useCallback, useState} from "react";
 export type EditableSpanPropsType = {
     title: string
     changeTask: (text: string) => void
+    disabled?: boolean
 }
 
 export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
@@ -24,7 +25,7 @@ export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
     }
 
     if (editMode) {
-        return <input onBlur={inputOnBlurHandler} value={inputField} onChange={inputOnChangeHandler} autoFocus/>
+        return <input disabled={props.disabled} onBlur={inputOnBlurHandler} value={inputField}  onChange={inputOnChangeHandler} autoFocus/>
     } else {
         return <span onDoubleClick={doubleClickHandler}>{props.title}</span>
     }

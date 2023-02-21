@@ -6,8 +6,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LinearProgress from '@mui/material/LinearProgress';
+import {useSelector} from "react-redux";
+import {useAppSelector} from "../../app/store";
 
 export default function ButtonAppBar() {
+    const isLoading = useAppSelector(state => state.app.status)
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -25,7 +30,9 @@ export default function ButtonAppBar() {
                         News
                     </Typography>
                     <Button color="inherit">Login</Button>
+
                 </Toolbar>
+                {isLoading === 'loading' && <LinearProgress/>}
             </AppBar>
         </Box>
     );
